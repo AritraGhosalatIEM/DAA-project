@@ -9,7 +9,7 @@ void sort(int32_t arr[],uint32_t len){
 	int32_t left[mid],right[rest];
 	memcpy(left,arr,mid*SIZE);
 	memcpy(right,&arr[mid],rest*SIZE);
-	mergesort(left,mid);mergesort(right,rest);
+	sort(left,mid);sort(right,rest);
 	uint32_t i=0,j=0,k=0;
 	for(;i<mid && j<rest;k++)
 		if(left[i]<right[j])

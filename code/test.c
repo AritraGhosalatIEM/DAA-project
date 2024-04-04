@@ -3,16 +3,29 @@
 #include<stdlib.h>
 #include<stdint.h>
 #include<string.h>
+#include<time.h>
 #define INT_SIZE 4
-#define LOW 2
-#define TESTS 100
+#define LOW 100
+#define JUMP 500
+#define TESTS 10
+#define MAX 10000
 int main(int argc,char** argv){
-	uint32_t max=atoi(argv[1]);
-	int32_t* data=malloc(INT_SIZE*max);
-	int32_t* data_slice=malloc(INT_SIZE*max);
-	for(uint32_t numbers=LOW;numbers<max;numbers++){
-		memcpy(data,data_slice,INT_SIZE*numbers);
-		sort(data_slice,numbers);//TODO: macro loop
+	int32_t* data=malloc(INT_SIZE*MAX);
+	int32_t* data_slice=malloc(INT_SIZE*MAX);
+	FILE* data_file=fopen("numbers.dat","r");
+	fread(data,INT_SIZE,MAX,data_file);
+	fclose(data_file);
+	clock_t start;
+	for(uint32_t numbers=LOW;numbers<MAX;numbers+=JUMP){
+		clock_t total_ticks=0;
+		for(uint32_t _=0;_<TESTS;_++){
+			memcpy(data_slice,data,INT_SIZE*numbers);
+			start=clock();
+			sort(data_slice,numbers);
+			total_ticks+=(clock()-start);
+		}
+		printf("%d,",(int)total_ticks);//output csv
 	}
+	printf("\n");
 	return 0;
 }
