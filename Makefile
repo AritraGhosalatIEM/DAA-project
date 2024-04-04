@@ -1,6 +1,10 @@
 CC=gcc
 TOTAL=100000
 SAMPLES=10
+LOW=100
+JUMP=500
+MAX=10000
+TESTS=10
 numbers.dat:
 	head -c $$((4*$(TOTAL))) /dev/urandom > numbers.dat
 speed.pdf: code/graph.py data
@@ -19,7 +23,7 @@ data/stamp: $(shell ls code/sorts/ | sed 's/\.c/\.out/')
 	done;
 	touch data/stamp
 ticks.pdf:data/stamp
-	code/graph.py
+	code/graph.py $(LOW) $(MAX) $(JUMP) $(TESTS)
 report.pdf:latex/main.tex latex/template.tex ticks.pdf
 	xelatex latex/main.tex
 	mv main.pdf report.pdf

@@ -5,20 +5,17 @@
 #include<string.h>
 #include<time.h>
 #define INT_SIZE 4
-#define LOW 100
-#define JUMP 500
-#define TESTS 10
-#define MAX 10000
 int main(int argc,char** argv){
-	int32_t* data=malloc(INT_SIZE*MAX);
-	int32_t* data_slice=malloc(INT_SIZE*MAX);
+	const uint32_t low=atoi(argv[1]),max=atoi(argv[2]),jump=atoi(argv[3]),tests=atoi(argv[4]);
+	int32_t* data=malloc(INT_SIZE*max);
+	int32_t* data_slice=malloc(INT_SIZE*max);
 	FILE* data_file=fopen("numbers.dat","r");
-	fread(data,INT_SIZE,MAX,data_file);
+	fread(data,INT_SIZE,max,data_file);
 	fclose(data_file);
 	clock_t start;
-	for(uint32_t numbers=LOW;numbers<MAX;numbers+=JUMP){
+	for(uint32_t numbers=low;numbers<max;numbers+=jump){
 		clock_t total_ticks=0;
-		for(uint32_t _=0;_<TESTS;_++){
+		for(uint32_t _=0;_<tests;_++){
 			memcpy(data_slice,data,INT_SIZE*numbers);
 			start=clock();
 			sort(data_slice,numbers);

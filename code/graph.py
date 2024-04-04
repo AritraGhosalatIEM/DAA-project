@@ -7,6 +7,8 @@ from matplotlib.pyplot import plot,legend,title,xlabel,ylabel,xticks,savefig
 from matplotlib.style import use
 from numpy import array
 from os import listdir
+from sys import argv
+LOW=int(argv[1]);MAX=int(argv[2]);JUMP=int(argv[3]);TESTS=int(argv[4])
 numbers=range(LOW,MAX,JUMP)
 use('seaborn-v0_8')
 for datapath in listdir('data'):
