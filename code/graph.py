@@ -19,7 +19,7 @@ for datapath in listdir('data'):
             data+=array([int(i) for i in line.split(',')[:-1]])
             linecount+=1
         data//=linecount
-        plot(numbers,data,label=f'{datapath[:-8]} sort')
+        plot(*numbers,data,label=f'{datapath[:-8]} sort')
 title('Speed')
 xlabel('Numbers sorted')
 xticks(numbers,rotation=75)

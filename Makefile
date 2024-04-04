@@ -10,14 +10,13 @@ numbers.dat:
 speed.pdf: code/graph.py data
 	code/graph.py
 %.out:code/test.c code/sorts/%.c
-	# $(CC) $^ -o $@
-	$(CC) $^ -o $@ -g
+	$(CC) $^ -o $@
 data/stamp: $(shell ls code/sorts/ | sed 's/\.c/\.out/')
 	-mkdir data
 	i=$(SAMPLES);while [ $$i -gt 0 ];do\
 	  	make numbers.dat;\
 		for exeutable in *.out;do\
-			./$$exeutable >> data/$$exeutable.csv;\
+			./$$exeutable $(LOW) $(MAX) $(JUMP) $(TESTS) >> data/$$exeutable.csv;\
 		done;\
 		i=$$((i-1));\
 	done;
