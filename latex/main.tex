@@ -1,5 +1,57 @@
 \documentclass{article}
-\input{latex/template.tex}
+\usepackage{graphicx}
+\usepackage[colorlinks=false]{hyperref}
+\usepackage{minted}
+\usepackage[margin=20mm]{geometry}
+\usemintedstyle{autumn}
+\setminted{linenos,breaklines}
+\title{Automated Comparison of Sorting Algorithms}
+\author{Aritra Ghosal}
+\date{}
+\hypersetup{
+	pdftitle={DAA project},
+	pdfauthor={Aritra Ghosal},
+	pdfsubject={Design and Analysis of Algorithms},
+}
 \begin{document}
-henlo
+\maketitle
+\begin{center}
+\includegraphics[scale=0.5]{instructions/IEM logo.png}
+\\by\\
+	\vspace{2em}
+	\begin{tabular}{lll}
+		\textbf{Name}&\textbf{Enrolment No.}&\textbf{University Registration No.}\\
+		Aritra Ghosal&12022002018036&221040110139\\
+		Anumoy Pathak&12022002018015&221040110135\\
+		Sayan Saha&12022002018040&221040110175\\
+		Jayabrota Banerjee&12022002018078&221040110145
+	\end{tabular}
+\newpage
+\end{center}
+\section*{Introduction}
+Sorting is a rudimentary but essential element of handling data. Applications of sorting range from simple applications to major optimizations in large systems.
+Sorting a finite collection of linear data can be done in various ways, each way having it's own advantages and disadvantages.
+This project aims to create a basic system for automatic comparison of algorithms with random data.
+\subsection*{Design}
+Everything in this project, including this very report was generated automatically from pre-written code using the following build system.\\
+\subsubsection*{Makefile}
+\inputminted{make}{Makefile}
+This build system automatically checks for changes in all files and rebuilds the elements necessary.
+All algorithms need to be implemented in C and kept in the \emph{code/sorts} directory.
+Comparison, plotting and inclusion of the algorithm in this report is done automatically by the build system.
+Tests are written in a file which is to output the data as csv.
+\subsubsection*{code/test.c}
+\inputminted{c}{code/test.c}
+Data is plotted into using the following code.
+\subsubsection*{code/graph.py}
+\inputminted{python}{code/graph.py}
+\section*{Code}
+What follows is all the implementations currently provided in this project.
+It is to be noted that addition or removal of any algorithm is automatically going to change this report accordingly.
+\input{latex/implementations.tex}
+\section*{Comparision}
+All of the given algorithms are automatically compared into the following graph.\\
+\includegraphics{ticks.pdf}
+\section*{References}
+\href{https://github.com/AritraGhosalatIEM/DAA-project}{Github repo for this project}
 \end{document}
